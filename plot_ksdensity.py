@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+
 def ksdensity(data, width=0.3):
     # returns kernel smoothing function from data points in data
     def ksd(x_axis):
