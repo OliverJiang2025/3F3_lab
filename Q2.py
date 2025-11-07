@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy import stats
 
-a = 2
+a = 6
 b = 3
 num_bin = 50
 N = 1000
@@ -22,21 +22,26 @@ g = np.linspace(0,10,N)
 g_theoretical = np.e**(-g/2)/(np.sqrt(2*np.pi*g))
 
 
-fig, axs = plt.subplots(1,3,figsize=(15,6))
+fig, axs = plt.subplots(1,3,figsize=(20,6))
 
 axs[0].hist(x_data, bins = num_bin, density = True)
-axs[0].plot(x, x_theoretical, linestyle = '--')
-axs[0].axvline(0, color = 'red', linestyle = '--')
+axs[0].plot(x, x_theoretical, linestyle = '--', label = 'theoretical distribution')
+axs[0].axvline(0, color = 'red', linestyle = '--', label = 'mu')
 axs[0].set_title('Standard Gaussian Distribution, x')
+axs[0].legend()
+
 
 axs[1].hist(y_data, bins = num_bin, density = True)
-axs[1].plot(y, y_theoretical, linestyle = '--')
-axs[1].axvline(b, color = 'red', linestyle = '--')
-axs[1].set_title(f'Distribution of ax+b in which a = {a}, b = {b}')
+axs[1].plot(y, y_theoretical, linestyle = '--', label = 'theoretical distribution')
+axs[1].axvline(b, color = 'red', linestyle = '--', label = 'mu')
+axs[1].set_title(f'Distribution of ax+b (a = {a}, mu = b = {b})')
+axs[1].legend()
+
 
 axs[2].hist(g_data, bins = num_bin, density = True)
 axs[2].plot(g, g_theoretical, linestyle = '--')
 axs[2].set_ylim(0,2)
 axs[2].set_title('Distribution of x^2')
+
 
 plt.show()

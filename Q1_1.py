@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from scipy import stats
 from plot_ksdensity import ksdensity
 
-N = 1000
+N = 100
 num_bins = 30
 width = 0.5 # width of ks density function 
 
