@@ -28,6 +28,6 @@ x = x(b,s,u,v)
 
 
 plt.figure()
-plt.hist(x, bins = 50, density = True)
-plt.xlim(-10000,20000)
+plt.hist(x, bins = 50, density = False)
+#plt.xlim(-10000,20000)
 plt.show()
