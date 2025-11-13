@@ -21,14 +21,14 @@ def plot_data(N, num_bins, width, type, kernel):
     unif_pdf = np.ones(N)
     
     ks_density = ksdensity(gauss_data, width=width)
-    #print(type(ks_density(gauss_x)))
+
 
     plt.figure(figsize = (12,6))
     if type == "Gaussian":
         if kernel:
             plt.plot(gauss_x, gauss_pdf, 
                      label = 'Theoretical Gaussian Distribution')
-            plt.plot(gauss_x, ks_density,
+            plt.plot(gauss_x, ks_density(gauss_x),
                      label = 'kernel density estimate for Gaussian random numbers')
             plt.title("Kernel density estimate for Gaussian random numbers overlaid on exact Gaussian curve")
         else:
@@ -40,12 +40,14 @@ def plot_data(N, num_bins, width, type, kernel):
     elif type == "Uniform":
         if kernel:
             plt.hist(unif_data, bins = num_bins, density = True,
-                     label = 'Histogram of Uniform random numbers overlaid on exact Uniform curve')
+                     label = 'Histogram of Uniform random numbers')
             plt.plot(unif_x, unif_pdf,
                      label = '')
         else:
-            plt.hist(unif_data, bins = num_bins, density = True)
-            plt.plot(unif_x, unif_pdf)
+            plt.hist(unif_data, bins = num_bins, density = True,
+                     label = 'Uniform random numbers')
+            plt.plot(unif_x, unif_pdf,
+                     label = 'exact uniform curve')
 
     #plt.tight_layout()
     
@@ -54,4 +56,4 @@ def plot_data(N, num_bins, width, type, kernel):
 
 
 
-plot_data(N, num_bins, width, "Gaussian", kernel = True)
+plot_data(N, num_bins, width, "Uniform", kernel = False)
