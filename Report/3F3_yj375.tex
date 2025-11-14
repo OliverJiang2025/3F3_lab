@@ -171,24 +171,30 @@ Calculate $p(y)$ using the Jacobian formula:}
 
 The Jacobian formula provided by lab handout:
 \begin{equation*}
-    p(y) = \frac{p(x)}{|dy/dx|}|_{x = f^{-1}(y)}
+    p(y) = \frac{p(x)}{|dy/dx|}\bigg|_{x = f^{-1}(y)}
+\end{equation*}
+$y = f(x) = ax + b \Rightarrow x = f^{-1}(y) = \frac{y-b}{a}$, and 
+$dy/dx = a$.
+With the standard Gaussian distribution:
+\begin{equation*}
+    p(x) = \frac{1}{\sqrt{2\pi}}e^{-\frac{x^2}{2}}
+\end{equation*}
+
+\begin{equation*}
+    p(y) = \frac{1}{|a|} \cdot \frac{1}{\sqrt{2\pi}} e^{-\frac{(\frac{y-b}{a})^2}{2}} = \frac{1}{\sqrt{2\pi a^2}} e^{-\frac{(y-b)^2}{2a^2}}
 \end{equation*}
 
 
+{\bf Explain how this is linked to the general normal 
+density with non-zero mean and non-unity variance:}
+
+We can see that the transformed random variable is ${\cal N}(y|b,a^2)$.
 
 
-
-
-
-Explain how this is linked to the general normal density with non-zero mean and non-unity variance:
-
-
-{\em Text/maths answer  here}
-\vspace{3in}
-
-
-
- Verify this formula by transforming a large collection of random samples $x^{(i)}$ to give $y^{(i)}=f(x^{(i)})$, histogramming the resulting $y$ samples, and overlaying a plot of your formula calculated using the Jacobian:
+{\bf Verify this formula by transforming a large collection of 
+random samples $x^{(i)}$ to give $y^{(i)}=f(x^{(i)})$, 
+histogramming the resulting $y$ samples, and overlaying a 
+plot of your formula calculated using the Jacobian:}
 
 
 {\em Include your graphic here}
