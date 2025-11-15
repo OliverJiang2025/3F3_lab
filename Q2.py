@@ -22,26 +22,26 @@ g = np.linspace(0,10,N)
 g_theoretical = np.e**(-g/2)/(np.sqrt(2*np.pi*g))
 
 
-fig, axs = plt.subplots(1,3,figsize=(20,6))
-
+"""
 axs[0].hist(x_data, bins = num_bin, density = True)
 axs[0].plot(x, x_theoretical, linestyle = '--', label = 'theoretical distribution')
-axs[0].axvline(0, color = 'red', linestyle = '--', label = 'mu')
+axs[0].axvline(0, color = 'red', linestyle = '--', label = '$\mu$')
 axs[0].set_title('Standard Gaussian Distribution, x')
 axs[0].legend()
 
 
 axs[1].hist(y_data, bins = num_bin, density = True)
 axs[1].plot(y, y_theoretical, linestyle = '--', label = 'theoretical distribution')
-axs[1].axvline(b, color = 'red', linestyle = '--', label = 'mu')
-axs[1].set_title(f'Distribution of ax+b (a = {a}, mu = b = {b})')
+axs[1].axvline(b, color = 'red', linestyle = '--', label = '$\mu$')
+axs[1].set_title(f'Distribution of y=ax+b ($\sigma^2$ = a = {a}, $\mu$ = b = {b})')
 axs[1].legend()
+"""
+plt.hist(g_data, bins = num_bin, density = True)
+plt.plot(g, g_theoretical, linestyle = '--')
+plt.ylim(0,2)
+plt.title('Distribution of y=$x^2$')
 
-
-axs[2].hist(g_data, bins = num_bin, density = True)
-axs[2].plot(g, g_theoretical, linestyle = '--')
-axs[2].set_ylim(0,2)
-axs[2].set_title('Distribution of x^2')
+plt.legend(['theoretical distribution'])
 
 
 plt.show()

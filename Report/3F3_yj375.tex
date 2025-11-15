@@ -187,7 +187,12 @@ With the standard Gaussian distribution:
 
 {\bf Explain how this is linked to the general normal 
 density with non-zero mean and non-unity variance:}
-
+\newline
+For a general normal distribution ${\cal N}(x|\mu,\sigma^2)$,
+the probability density function is:
+\begin{equation*}
+    p(x) = \frac{1}{\sqrt{2\pi \sigma^2}} e^{-\frac{(x-\mu)^2}{2\sigma^2}}
+\end{equation*}
 We can see that the transformed random variable is ${\cal N}(y|b,a^2)$.
 
 
@@ -197,34 +202,48 @@ histogramming the resulting $y$ samples, and overlaying a
 plot of your formula calculated using the Jacobian:}
 
 
-{\em Include your graphic here}
-\vspace{3in}
+\begin{figure}[htbp] 
+    \centering  
+    \includegraphics[width=1\textwidth]{Figure_6.png}   
+\end{figure}
+
+We can see that the histogram of transformed random samples with
+a = 6 and b = 3 fits well with the probability density function with
+variance 6 and mean 3.
 
 
 
+{\bf Now take $p(x)={\cal N}(x|0,1)$ and $f(x)=x^2$. 
+Calculate $p(y)$ using the Jacobian formula:}
 
-Now take $p(x)={\cal N}(x|0,1)$ and $f(x)=x^2$. Calculate $p(y)$ using the Jacobian formula:
-
-{\em Text/maths answer  here}
-\vspace{3in}
-
-
-
-
- Verify your result by histogramming of transformed random samples:
-
-
-{\em Include your graphic here}
-\vspace{3in}
-
-
-\item{\bf Inverse CDF method} 
+Note that $y = f(x) = x^2 \Rightarrow x = f^{-1}(y) = \pm \sqrt{y}$.
+ Thus, $dy/dx = 2x = 2\pm \sqrt{y}$.
+The probability density function of the transformed random variable is:
+\begin{align*}
+    p(y) &= \frac{p(x)}{|dy/dx|}\bigg|_{x = f^{-1}(y)} + \frac{p(x)}{|dy/dx|}\bigg|_{x = -f^{-1}(y)} \\
+    &= \frac{1}{2\sqrt{y}} \cdot \frac{1}{\sqrt{2\pi}} e^{-\frac{(\sqrt{y})^2}{2}} + \frac{1}{2\sqrt{y}} \cdot \frac{1}{\sqrt{2\pi}} e^{-\frac{(-\sqrt{y})^2}{2}} \\
+    &= \frac{1}{\sqrt{2\pi y}} e^{-\frac{y}{2}}
+\end{align*}
 
 
 
-Calculate the CDF and the inverse CDF for the exponential distribution: 
+{\bf Verify your result by histogramming of transformed random samples:}
 
-The pdf of an exponential distribution Y with mean 1 is:
+\begin{figure}[htbp] 
+    \centering  
+    \includegraphics[width=0.7\textwidth]{Figure_7.png}
+
+\end{figure}
+
+
+\item{\MakeUppercase{\textbf{Inverse CDF method}}}
+
+
+
+{\bf Calculate the CDF and the inverse CDF for the exponential distribution: }
+
+The probability density function
+of an exponential distribution Y with mean 1 is:
 \begin{equation*}
     f_Y(y) = e^{-y} 
 \end{equation*}
@@ -237,10 +256,11 @@ The inverse of this function is found by: $x = F_Y(y), y = F^{-1}_Y(x)$.
     F^{-1}_Y(x) = -\ln{(1-x)} 
 \end{equation*}
 
-Matlab/Python code for inverse CDF method for generating samples from the exponential distribution:
+{\bf Matlab/Python code for inverse CDF method for 
+generating samples from the exponential distribution:}
 
 
-\begin{lstlisting}[language=python, caption={MATLAB}]
+\begin{lstlisting}[language=python, caption={PYTHON CODE}]
 x_data = np.random.uniform(0,1,1000)
 y_data = -np.log(1-x_data)
 
@@ -250,22 +270,63 @@ exp_theoretical = np.e**(-y)
 
 
 
-Plot histograms/ kernel density estimates and overlay them on the desired exponential density:
+{\bf Plot histograms/ kernel density estimates and overlay 
+them on the desired exponential density:}
+
+\begin{figure}[htbp] 
+    \centering  
+    \includegraphics[width=1\textwidth]{Figure_8.png}
+\end{figure}
 
 
-{\em Include your graphic here}
-\vspace{3in}
 
-\item {\bf Simulation from a `non-standard'  density.}
+\item {\MakeUppercase{\bf Simulation from a `non-standard'  density.}}
 
-Matlab/Python code to generate $N$ random numbers drawn from the distribution of $X$:
-\vspace{3in}
+{\bf Matlab/Python code to generate $N$ random numbers drawn 
+from the distribution of $X$:}
 
-Plot some histogram density estimates with $\alpha=0.5,\,1.5$ and several values of $\beta$. 
 
-\vspace{3in}
+\begin{lstlisting}[language=python, caption={PYTHON CODE}]
+    alpha = 1.5 # alpha in (0,2)/{1}
+    beta = 0    # beta in [-1,1]
+    N = 100000
 
-Hence comment on the interpretation of the parameters $\alpha$ and $\beta$.
+    def b(alpha, beta):
+        temp1 = beta*np.tan(np.pi*alpha/2)
+        temp2 = np.arctan(temp1)
+        return temp2/alpha
+
+    def s(alpha, beta):
+        temp1 = beta*np.tan(np.pi*alpha/2)
+        temp2 = 1 + temp1**2
+        temp3 = 1/(2*alpha)
+        return temp2**(temp3)
+
+    u = np.random.uniform(-np.pi/2,np.pi/2,N)
+
+    v = -np.log(1-np.random.uniform(0,1,N))
+
+    b = b(alpha, beta)
+    s = s(alpha, beta)
+
+    def x(b,s,u,v):
+        temp1 = np.sin(alpha*(u + b))
+        temp2 = (np.cos(u))**(1/alpha)
+        temp3 = np.cos(u - alpha*(u + b))/v
+        temp4 = (1-alpha)/alpha
+        return s*temp1/temp2*(temp3**temp4)
+
+    x = x(b,s,u,v)
+\end{lstlisting}
+
+
+
+{\bf Plot some histogram density estimates with $\alpha=0.5,\,1.5$ 
+and several values of $\beta$. }
+
+
+
+{\bf Hence comment on the interpretation of the parameters $\alpha$ and $\beta$.}
 
 \end{enumerate}
 
