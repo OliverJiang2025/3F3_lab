@@ -145,6 +145,7 @@ and $\pm 3$ standard deviation lines:}
 
 {\bf Are your histogram results consistent 
 with the multinomial distribution theory? }
+\newline
 For the case that N = 1000 and 10000, the histogram results
 are consistent with the multinomial distribution theory.
 Considering the counts of each bin as a random variable, 
@@ -287,47 +288,58 @@ from the distribution of $X$:}
 
 
 \begin{lstlisting}[language=python, caption={PYTHON CODE}]
-    alpha = 1.5 # alpha in (0,2)/{1}
-    beta = 0    # beta in [-1,1]
-    N = 100000
+    def generate_x(alpha, beta, N):
+        def b(alpha, beta):
+            temp1 = beta*np.tan(np.pi*alpha/2)
+            temp2 = np.arctan(temp1)
+            return temp2/alpha
 
-    def b(alpha, beta):
-        temp1 = beta*np.tan(np.pi*alpha/2)
-        temp2 = np.arctan(temp1)
-        return temp2/alpha
+        def s(alpha, beta):
+            temp1 = beta*np.tan(np.pi*alpha/2)
+            temp2 = 1 + temp1**2
+            temp3 = 1/(2*alpha)
+            return temp2**(temp3)
 
-    def s(alpha, beta):
-        temp1 = beta*np.tan(np.pi*alpha/2)
-        temp2 = 1 + temp1**2
-        temp3 = 1/(2*alpha)
-        return temp2**(temp3)
+        u = np.random.uniform(-np.pi/2,np.pi/2,N)
 
-    u = np.random.uniform(-np.pi/2,np.pi/2,N)
+        v = -np.log(1-np.random.uniform(0,1,N))
 
-    v = -np.log(1-np.random.uniform(0,1,N))
+        b = b(alpha, beta)
+        s = s(alpha, beta)
 
-    b = b(alpha, beta)
-    s = s(alpha, beta)
+        def x(b,s,u,v):
+            temp1 = np.sin(alpha*(u + b))
+            temp2 = (np.cos(u))**(1/alpha)
+            temp3 = np.cos(u - alpha*(u + b))/v
+            temp4 = (1-alpha)/alpha
+            return s*temp1/temp2*(temp3**temp4)
+        return x(b,s,u,v)
 
-    def x(b,s,u,v):
-        temp1 = np.sin(alpha*(u + b))
-        temp2 = (np.cos(u))**(1/alpha)
-        temp3 = np.cos(u - alpha*(u + b))/v
-        temp4 = (1-alpha)/alpha
-        return s*temp1/temp2*(temp3**temp4)
-
-    x = x(b,s,u,v)
 \end{lstlisting}
 
 
-
+\newpage
 {\bf Plot some histogram density estimates with $\alpha=0.5,\,1.5$ 
 and several values of $\beta$. }
 
+\begin{figure}[htbp] 
+    \centering  
+    \includegraphics[width=1\textwidth]{Figure_9.png}
+\end{figure}
 
 
-{\bf Hence comment on the interpretation of the parameters $\alpha$ and $\beta$.}
-
+{\bf Hence comment on the interpretation 
+of the parameters $\alpha$ and $\beta$.}
+\newline
+From the figures, we can see that $\alpha$ determines the extent of the 
+data with extreme values. A small value of $\alpha$ gives a distribution
+that has more extreme values, while a large value of $\alpha$ gives a distribution
+that is more concentrated around the mean. When $\alpha = 2$, we can see that
+the distribution has become a standard Gaussian distribution.
+\newline
+The value of $\beta$ determines the skewness of the distribution.
+A positive $\beta$ skews the distributio to the right, and a 
+negative $\beta$ skews the distribution to the left.
 \end{enumerate}
 
 \appendix

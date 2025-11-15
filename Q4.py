@@ -4,7 +4,7 @@ from scipy import stats
 
 alpha = 1.5 # alpha in (0,2)/{1}
 beta = 0    # beta in [-1,1]
-N = 100000
+N = 10000
 
 def generate_x(alpha, beta, N):
     def b(alpha, beta):
@@ -33,18 +33,30 @@ def generate_x(alpha, beta, N):
         return s*temp1/temp2*(temp3**temp4)
     return x(b,s,u,v)
 
-fig, axs = plt.subplots(2,5,figsize = (15,6))
 
-for i in range(2):
-    if i == 0:
-        alpha = 0.5
-    elif i == 1:
-        alpha = 1.5
-    for j in range(5):
-        beta = -1 + j*0.5
-        x = generate_x(alpha, beta, N)
-        axs[i,j].hist(x, bins = int(np.sqrt(N)), density = True)
+def plot_data():
+
+    fig, axs = plt.subplots(3,5,figsize = (15,9))
+    fig.suptitle('Histograms of X for different alpha and beta')
+    for i in range(3):
+        for j in range(5):
+            if i == 0:
+                alpha = 0.5
+            elif i == 1:
+                alpha = 1.5
+            elif i == 2:
+                alpha = 2
+            beta = -1 + j*0.5
+            if i == 0 and j == 2:
+                axs[i,j].set_xlim(-2e7,2e7)
+            x = generate_x(alpha, beta, N)
+            axs[i,j].set_yscale('log')
+            axs[i,j].hist(x, bins = int(np.sqrt(N)), density = False)
+            axs[i,j].set_title(f'alpha = {alpha}, beta = {beta}')
+
+    plt.tight_layout()
+    plt.show()
 
 
-
-plt.show()
+if __name__ == "__main__":
+    plot_data()
