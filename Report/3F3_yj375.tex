@@ -94,12 +94,17 @@ A large value of width underfits the random numbers and makes
 the smoothing function similar to the kernel function itself,
 which is a standard Gaussian distribution in this context.
 
-If the width is set to smaller values, for example, 0.1. 
+If the width is set to smaller values, for example, 0.1 as 
+shown below. 
 The smoothing function provides a good approximation to the 
 expected probability density function, which is a constant from
 0 to 1. But it overfits the data, the density curve is no longer
 a constant value as expected. It can be seen that fine-tuning
 on the width is much harder for uniform random numbers.
+\begin{figure}[htbp] 
+    \centering  
+    \includegraphics[width=0.7\textwidth]{Figure_10.png}   
+\end{figure}
 
 To sum up, kernel density method works well with Gaussian 
 random numbers, and becomes harder to fine-tune the parameter
@@ -317,8 +322,6 @@ from the distribution of $X$:}
 
 \end{lstlisting}
 
-
-\newpage
 {\bf Plot some histogram density estimates with $\alpha=0.5,\,1.5$ 
 and several values of $\beta$. }
 

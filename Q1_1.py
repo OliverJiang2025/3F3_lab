@@ -5,7 +5,7 @@ from plot_ksdensity import ksdensity
 
 N = 1000
 num_bins = 50
-width = 0.4 # width of ks density function 
+width = 0.1 # width of ks density function 
 
 
 def plot_data(N, num_bins, width, type, kernel):
@@ -42,10 +42,17 @@ def plot_data(N, num_bins, width, type, kernel):
             mu = 0.5
             sigma = width
             x = np.linspace(-1,2,N)
+            y = np.where(
+                            (x >= 0) & (x <= 1),  # 条件：x在 [a,b] 内
+                            1,           # 满足条件：PDF=1/(b-a)
+                            0                     # 不满足条件：PDF=0
+                            )
             plt.plot(x, stats.norm.pdf(x, 0.5, width**(1/2)),
                      label = f'exact Gaussian curve with mean = {mu}, variance = {sigma}')
             plt.plot(x, ks_density_unif(x),
                      label = 'Kernel density estimate for Uniform random numbers')
+            plt.plot(x,y,'--',
+                     label = 'theoretical uniform probability density distribution')
             plt.title(f'Kernel density estimate with width = {width} for uniform random number overlaid on exact Gaussian curve')
         else:
             plt.hist(unif_data, bins = num_bins, density = True,
