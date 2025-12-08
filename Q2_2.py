@@ -12,5 +12,8 @@ theoretical = 1/(np.pi * np.sqrt(1 - idx**2))
 
 plt.hist(y_data, bins=50, density=True, label='histogram of $y=sin(x)$')
 plt.plot(idx, theoretical, linestyle='--', label='$p(y)=1/(\pi \sqrt{1-y^2})$')
+plt.xlabel('y = sin(x)')
+plt.ylabel('Density')
+plt.title('Histogram of y=sin(x) and Theoretical PDF')
 plt.legend()
 plt.show()
