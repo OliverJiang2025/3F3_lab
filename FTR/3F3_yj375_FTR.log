@@ -407,4 +407,122 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 <Figures/Figure_1.png, id=4, 1067.4279pt x 433.62pt>
 File: Figures/Figure_1.png Graphic file (type png)
 <use Figures/Figure_1.png>
-Package pdftex.def Inf
+Package pdftex.def Info: Figures/Figure_1.png  used on input line 88.
+(pdftex.def)             Requested size: 483.69684pt x 196.49019pt.
+
+
+[1
+
+{d:/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+<Figures/Figure_2.png, id=14, 1084.05pt x 578.16pt>
+File: Figures/Figure_2.png Graphic file (type png)
+<use Figures/Figure_2.png>
+Package pdftex.def Info: Figures/Figure_2.png  used on input line 129.
+(pdftex.def)             Requested size: 483.69684pt x 257.97292pt.
+
+
+[2 <./Figures/Figure_1.png>]
+
+[3 <./Figures/Figure_2.png>]
+<Figures/Figure_3.png, id=30, 867.24pt x 433.62pt>
+File: Figures/Figure_3.png Graphic file (type png)
+<use Figures/Figure_3.png>
+Package pdftex.def Info: Figures/Figure_3.png  used on input line 196.
+(pdftex.def)             Requested size: 483.69684pt x 241.85292pt.
+<Figures/Figure_4.png, id=31, 1445.4pt x 433.62pt>
+File: Figures/Figure_4.png Graphic file (type png)
+<use Figures/Figure_4.png>
+Package pdftex.def Info: Figures/Figure_4.png  used on input line 225.
+(pdftex.def)             Requested size: 483.69684pt x 145.10646pt.
+
+
+[4 <./Figures/Figure_3.png>]
+<Figures/Figure_5.png, id=37, 1084.05pt x 433.62pt>
+File: Figures/Figure_5.png Graphic file (type png)
+<use Figures/Figure_5.png>
+Package pdftex.def Info: Figures/Figure_5.png  used on input line 242.
+(pdftex.def)             Requested size: 483.69684pt x 193.47969pt.
+
+
+[5 <./Figures/Figure_4.png> <./Figures/Figure_5.png>]
+<Figures/Figure_6.png, id=44, 1445.4pt x 433.62pt>
+File: Figures/Figure_6.png Graphic file (type png)
+<use Figures/Figure_6.png>
+Package pdftex.def Info: Figures/Figure_6.png  used on input line 290.
+(pdftex.def)             Requested size: 483.69684pt x 145.10646pt.
+
+
+[6 <./Figures/Figure_6.png>]
+<Figures/Figure_7.png, id=50, 462.528pt x 346.896pt>
+File: Figures/Figure_7.png Graphic file (type png)
+<use Figures/Figure_7.png>
+Package pdftex.def Info: Figures/Figure_7.png  used on input line 318.
+(pdftex.def)             Requested size: 338.5863pt x 253.95184pt.
+
+
+[7 <./Figures/Figure_7.png>]
+<Figures/Figure_8.png, id=56, 462.528pt x 346.896pt>
+File: Figures/Figure_8.png Graphic file (type png)
+<use Figures/Figure_8.png>
+Package pdftex.def Info: Figures/Figure_8.png  used on input line 362.
+(pdftex.def)             Requested size: 338.5863pt x 253.95184pt.
+
+
+[8]
+<Figures/Figure_9.png, id=60, 1084.05pt x 433.62pt>
+File: Figures/Figure_9.png Graphic file (type png)
+<use Figures/Figure_9.png>
+Package pdftex.def Info: Figures/Figure_9.png  used on input line 396.
+(pdftex.def)             Requested size: 483.69684pt x 193.47969pt.
+
+
+[9 <./Figures/Figure_8.png>]
+<Figures/Figure_10.png, id=65, 867.24pt x 361.35pt>
+File: Figures/Figure_10.png Graphic file (type png)
+<use Figures/Figure_10.png>
+Package pdftex.def Info: Figures/Figure_10.png  used on input line 417.
+(pdftex.def)             Requested size: 483.69684pt x 201.5441pt.
+
+
+[10 <./Figures/Figure_9.png> <./Figures/Figure_10.png>]
+<Figures/Figure_11.png, id=71, 462.528pt x 346.896pt>
+File: Figures/Figure_11.png Graphic file (type png)
+<use Figures/Figure_11.png>
+Package pdftex.def Info: Figures/Figure_11.png  used on input line 465.
+(pdftex.def)             Requested size: 241.84842pt x 181.38736pt.
+
+
+[11]
+<Figures/Figure_12.png, id=75, 1084.05pt x 650.43pt>
+File: Figures/Figure_12.png Graphic file (type png)
+<use Figures/Figure_12.png>
+Package pdftex.def Info: Figures/Figure_12.png  used on input line 486.
+(pdftex.def)             Requested size: 483.69684pt x 290.21953pt.
+
+
+[12 <./Figures/Figure_11.png>]
+
+[13 <./Figures/Figure_12.png>]
+
+[14] (./3F3_yj375_FTR.aux)
+ ***********
+LaTeX2e <2024-11-01> patch level 1
+L3 programming layer <2024-12-09>
+ ***********
+ ) 
+Here is how much of TeX's memory you used:
+ 30640 strings out of 473254
+ 791738 string characters out of 5722070
+ 1400808 words of memory out of 5000000
+ 53564 multiletter control sequences out of 15000+600000
+ 564579 words of font info for 60 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 84i,12n,93p,473b,235s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<d:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><d:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><d:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><d:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><d:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><d:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><d:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><d:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><d:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><d:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb><d:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><d:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb><d:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on 3F3_yj375_FTR.pdf (14 pages, 697347 bytes).
+PDF statistics:
+ 143 PDF objects out of 1000 (max. 8388607)
+ 76 compressed objects within 1 object stream
+ 0 named destinations out of 1000 (max. 500000)
+ 73 words of extra memory for PDF output out of 10000 (max. 10000000)
+
