@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.12.28)  8 DEC 2025 03:37
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.12.28)  8 DEC 2025 19:54
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -396,25 +396,24 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
  (d:/texlive/2024/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-LaTeX Font Info:    Trying to load font information for U+msa on input line 76.
- (d:/texlive/2024/texmf-dist/tex/latex/amsfonts/umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-LaTeX Font Info:    Trying to load font information for U+msb on input line 76.
- (d:/texlive/2024/texmf-dist/tex/latex/amsfonts/umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
 <Figures/Figure_1.png, id=4, 1067.4279pt x 433.62pt>
 File: Figures/Figure_1.png Graphic file (type png)
 <use Figures/Figure_1.png>
 Package pdftex.def Info: Figures/Figure_1.png  used on input line 88.
 (pdftex.def)             Requested size: 483.69684pt x 196.49019pt.
-
+LaTeX Font Info:    Trying to load font information for U+msa on input line 98.
+ (d:/texlive/2024/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 98.
+ (d:/texlive/2024/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
 
 [1
 
 {d:/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-<Figures/Figure_2.png, id=14, 1084.05pt x 578.16pt>
+<Figures/Figure_2.png, id=13, 1084.05pt x 578.16pt>
 File: Figures/Figure_2.png Graphic file (type png)
 <use Figures/Figure_2.png>
 Package pdftex.def Info: Figures/Figure_2.png  used on input line 129.
@@ -497,12 +496,17 @@ Package pdftex.def Info: Figures/Figure_11.png  used on input line 465.
 File: Figures/Figure_12.png Graphic file (type png)
 <use Figures/Figure_12.png>
 Package pdftex.def Info: Figures/Figure_12.png  used on input line 486.
-(pdftex.def)             Requested size: 483.69684pt x 290.21953pt.
+(pdftex.def)             Requested size: 338.5863pt x 203.1497pt.
+<Figures/Figure_13.png, id=76, 1084.05pt x 867.24pt>
+File: Figures/Figure_13.png Graphic file (type png)
+<use Figures/Figure_13.png>
+Package pdftex.def Info: Figures/Figure_13.png  used on input line 504.
+(pdftex.def)             Requested size: 338.5863pt x 270.86627pt.
 
 
-[12 <./Figures/Figure_11.png>]
+[12 <./Figures/Figure_11.png> <./Figures/Figure_12.png>]
 
-[13 <./Figures/Figure_12.png>]
+[13 <./Figures/Figure_13.png>]
 
 [14] (./3F3_yj375_FTR.aux)
  ***********
@@ -511,18 +515,18 @@ L3 programming layer <2024-12-09>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 30640 strings out of 473254
- 791738 string characters out of 5722070
- 1400808 words of memory out of 5000000
- 53564 multiletter control sequences out of 15000+600000
+ 30648 strings out of 473254
+ 791944 string characters out of 5722070
+ 1400834 words of memory out of 5000000
+ 53572 multiletter control sequences out of 15000+600000
  564579 words of font info for 60 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,12n,93p,473b,235s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <d:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><d:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><d:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><d:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><d:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><d:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><d:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><d:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><d:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><d:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb><d:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><d:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb><d:/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on 3F3_yj375_FTR.pdf (14 pages, 697347 bytes).
+Output written on 3F3_yj375_FTR.pdf (14 pages, 757249 bytes).
 PDF statistics:
- 143 PDF objects out of 1000 (max. 8388607)
+ 145 PDF objects out of 1000 (max. 8388607)
  76 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 73 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 78 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -73,7 +73,7 @@ are also discussed.
 Inverse CDF method is used to 
 generate random variables 
 from any arbitrary distributions.
-Finally, $\alpha$-stable 
+Finally, stable 
 distribution is discussed. 
 
 \section{Methods, Results, and Discussion}
@@ -477,13 +477,13 @@ to evaluate the MSE by Monte Carlo simulation.
 
 \newpage
 
-\section{Alpha-stable Distribution}
+\section{Stable Distribution}
 
 
 
 \begin{figure}[htbp] 
     \centering  
-    \includegraphics[width=1\textwidth]{Figures/Figure_12.png}
+    \includegraphics[width=0.7\textwidth]{Figures/Figure_12.png}
     \caption{Histogram of $\alpha$-stable random variables with different $\alpha$ and $\beta$}
     \label{fig:fig12}
 \end{figure}
@@ -499,12 +499,27 @@ A positive $\beta$ skews the distribution to the right, and a
 negative $\beta$ skews the distribution to the left.
 
 
+\begin{figure}[htbp] 
+  \centering  
+  \includegraphics[width=0.7\textwidth]{Figures/Figure_13.png}
+  \caption{Tail Probability of $\alpha$-stable random variables with different $\alpha$}
+  \label{fig:fig13}
+\end{figure}
 
+For the case that $\beta = 0$, the tail probability of $\alpha$-stable
+random variables is plotted in Figure \ref{fig:fig13}. 
 
+To compare with the standard Gaussian distribution,
+$\mathcal{N}(0,1)$, 
+that has a tail probability of:
+\begin{align*}
+  P(|X| > 0) &= 1 \\
+  P(|X| > 3) &\approx 2.7 \times 10^{-3}\\
+  P(|X| > 5) &\approx 5.7330 \times 10^{-7} \\
+\end{align*}
 
-
-
-
+It is clear that stable distributions generally 
+have heavier tails than the Gaussian distribution for $\beta = 0$.
 
 
 

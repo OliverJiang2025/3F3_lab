@@ -1,6 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy import stats
+from plot_ksdensity import ksdensity
+
 
 alpha = 1.5 # alpha in (0,2)/{1}
 beta = 0    # beta in [-1,1]
@@ -53,10 +55,85 @@ def plot_data():
             axs[i,j].set_yscale('log')
             axs[i,j].hist(x, bins = int(np.sqrt(N)), density = False)
             axs[i,j].set_title(f'alpha = {alpha}, beta = {beta}')
+            axs[i,j].set_xlabel('random value')
+            axs[i,j].set_ylabel('counts')
 
     plt.tight_layout()
     plt.show()
 
 
+def tail_prob(alpha, beta, threshold, N):
+    x = generate_x(alpha, beta, N)
+    #print(len(x))
+    #fig, ax = plt.subplots()
+    #ax.hist(x, bins=100, density=True)
+    count = np.sum(np.abs(x) > threshold)
+    return count / N
+
+def plot_tail_prob(thresholds, N, beta = 0):
+    fig, axs = plt.subplots(2,1, figsize=(15, 12))
+    
+    for i in range(2):
+        alpha = 0.5 if i == 0 else 1.5
+        tail_probs = []
+        for threshold in thresholds:
+            prob = tail_prob(alpha, beta, threshold, N)
+            tail_probs.append(prob)
+        axs[i].hist(generate_x(alpha, beta, N), bins = int(np.sqrt(N)), density = False)
+        axs[i].set_yscale('log')
+        axs[i].set_title(f'Histogram for alpha={alpha}, beta={beta}')
+        axs[i].set_xlabel('Random Value')
+        axs[i].set_ylabel('Counts')
+        #print(tail_probs)
+        axs[i].annotate(f'Tail Probabilities:\n' + '\n'.join([f'P(|X| > {th}) = {tp:.5f}' for th, tp in zip(thresholds, tail_probs)]),
+                        xy=(0.7, 0.7), xycoords='axes fraction',
+                        bbox=dict(boxstyle="round,pad=1", fc="yellow", alpha=0.5))
+    plt.tight_layout()
+    plt.show()
+
+def plot_ksd(alpha, beta, N):
+    #fig, ax = plt.subplots(figsize=(10,6))
+    x = generate_x(alpha, beta, N)
+    counts, bin_edges = np.histogram(x, bins = 1000, density = True)
+    bin_centers = (bin_edges[:-1] + bin_edges[1:]) / 2
+    threshold = 5 if alpha > 1 else 3
+    mask = (bin_centers > threshold) & (counts > 0)
+
+    x_tail = bin_centers[mask]
+    y_tail = counts[mask]  
+    if len(x_tail) > 0 and len(y_tail) > 0: 
+        log_x = np.log(x_tail)
+        log_y = np.log(y_tail)
+        #print(len(log_x), len(log_y))
+        slope, intercept = np.polyfit(log_x, log_y, 1) 
+        gamma_est = slope
+        c_est = np.exp(intercept)
+        #print(f'Estimated tail index (gamma) for alpha={alpha}, beta={beta}: {gamma_est}')
+        return c_est, gamma_est
+    else:
+        return 0,0
+
+def estimate_tail_index(alphas, N, num_it, beta = 0):
+    clist = []
+    gammalist = []
+    for alpha in alphas:
+        c_temp, gamma_temp = 0, 0
+        for i in range(num_it):
+            c, gamma = plot_ksd(alpha, beta, N)
+            c_temp += c
+            gamma_temp += gamma
+        c_temp /= num_it
+        gamma_temp /= num_it
+        clist.append(c_temp)
+        gammalist.append(gamma_temp)
+    plt.plot(alphas, gammalist, marker='o')
+    slope, intercept = np.polyfit(alphas, gammalist, 1)
+    plt.plot(alphas, slope*np.array(alphas) + intercept, label=f'Fit line: y={slope:.2f}x + {intercept:.2f}')
+    plt.legend()
+    plt.show()
+
+ini_alphas = np.arange(0.1, 2, 0.1)
+alphas = ini_alphas[ini_alphas != 1.0]
+
 if __name__ == "__main__":
-    plot_data()
+    estimate_tail_index(alphas=alphas, N=300000, num_it=50, beta=0)

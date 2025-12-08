@@ -1,11 +1,12 @@
 # Fdb version 4
-["pdflatex"] 1765165051.73144 "e:/Cambridge_Engineering/Part IIA/Coursework/3F3_lab/FTR/3F3_yj375_FTR.tex" "3F3_yj375_FTR.pdf" "3F3_yj375_FTR" 1765165053.70412 0
-  "3F3_yj375_FTR.aux" 1765165053 3704 a421f20052c362896601ef9d1b7e85ad "pdflatex"
-  "3F3_yj375_FTR.tex" 1765165049 19399 e8e4477e2e9ebb3440af05bc227fe1fb ""
+["pdflatex"] 1765223668.7032 "e:/Cambridge_Engineering/Part IIA/Coursework/3F3_lab/FTR/3F3_yj375_FTR.tex" "3F3_yj375_FTR.pdf" "3F3_yj375_FTR" 1765223670.77801 0
+  "3F3_yj375_FTR.aux" 1765223670 3927 63115206f83bdd4ccedd853bd890cf57 "pdflatex"
+  "3F3_yj375_FTR.tex" 1765223668 20107 f79bd6c606c400b61b3f47bd3079e544 ""
   "Figures/Figure_1.png" 1765126054 110831 40bf0f7b45df21e7f3fd124620891929 ""
   "Figures/Figure_10.png" 1765160864 56620 6381c77fc98beda4ea7dbbbef296be10 ""
   "Figures/Figure_11.png" 1765164636 27086 b7e15af974999d6690b020c5a72d436d ""
-  "Figures/Figure_12.png" 1765124693 57563 9e1abd954c8b4fb0d22e2146ac4e3091 ""
+  "Figures/Figure_12.png" 1765212446 69229 10953fb49a0d03b2ab5f9f67a589756d ""
+  "Figures/Figure_13.png" 1765218441 65490 fd30c8bee3c27cdb4c65f3a187ea5b0b ""
   "Figures/Figure_2.png" 1765141779 123609 26eef8aa78a59e97046ae69785a434ff ""
   "Figures/Figure_3.png" 1765146943 31860 0dd2a4146ac0be19aaec94d0d30a4e55 ""
   "Figures/Figure_4.png" 1765149533 42676 964cbcdf9a23d6a53da1690f83b60cf6 ""
@@ -160,7 +161,7 @@
   "d:/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1735364177 5531417 0a89c760151e024fa577412803c80da5 ""
   "d:/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1735364328 3347727 91057d0bf701461324dbee820a349449 ""
   "d:/texlive/2024/texmf.cnf" 1735364163 713 e69b156964470283e0530f5060668171 ""
-  "e:/Cambridge_Engineering/Part IIA/Coursework/3F3_lab/FTR/3F3_yj375_FTR.tex" 1765165049 19399 e8e4477e2e9ebb3440af05bc227fe1fb ""
+  "e:/Cambridge_Engineering/Part IIA/Coursework/3F3_lab/FTR/3F3_yj375_FTR.tex" 1765223668 20107 f79bd6c606c400b61b3f47bd3079e544 ""
   (generated)
   "3F3_yj375_FTR.aux"
   "3F3_yj375_FTR.log"
