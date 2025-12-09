@@ -96,7 +96,7 @@ def plot_ksd(alpha, beta, N):
     x = generate_x(alpha, beta, N)
     counts, bin_edges = np.histogram(x, bins = 1000, density = True)
     bin_centers = (bin_edges[:-1] + bin_edges[1:]) / 2
-    threshold = 5 if alpha > 1 else 3
+    threshold = 7 if alpha > 1 else 3
     mask = (bin_centers > threshold) & (counts > 0)
 
     x_tail = bin_centers[mask]
@@ -128,12 +128,47 @@ def estimate_tail_index(alphas, N, num_it, beta = 0):
         gammalist.append(gamma_temp)
     plt.plot(alphas, gammalist, marker='o')
     slope, intercept = np.polyfit(alphas, gammalist, 1)
-    plt.plot(alphas, slope*np.array(alphas) + intercept, label=f'Fit line: y={slope:.2f}x + {intercept:.2f}')
+    plt.plot(alphas, slope*np.array(alphas) + intercept, 
+             linestyle = '--',
+             label=f'Fit line: gamma={slope:.2f}alpha{intercept:.2f}')
+    plt.xlabel('Alpha')
+    plt.ylabel('Estimated Tail Index (Gamma)')
     plt.legend()
     plt.show()
 
-ini_alphas = np.arange(0.1, 2, 0.1)
+def plot_multiple_a(N, beta = 0):
+    fig, axs = plt.subplots(2, 3, figsize=(15, 8))
+    alphas = [1.5, 1.6, 1.7, 1.8, 1.9, 2.0]
+    for ax, alpha in zip(axs.flatten(), alphas):
+        x = generate_x(alpha, beta, N)
+        ax.hist(x, bins = int(np.sqrt(N)), density = True, label = 'Histogram')
+        #ax.set_yscale('log')
+        ax.set_title(f'Histogram for alpha={alpha}, beta={beta}')
+        ax.set_xlabel('Random Value')
+        ax.set_ylabel('Probability Density')
+        if alpha == 2:
+            ax.plot(np.linspace(-8,8,1000), stats.norm.pdf(np.linspace(-8,8,1000),0, np.sqrt(2)),
+                    label = 'N(0,2) PDF')
+        ax.legend()
+    plt.tight_layout()
+    plt.show()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ini_alphas = np.arange(0.5, 1.6, 0.1)
 alphas = ini_alphas[ini_alphas != 1.0]
 
 if __name__ == "__main__":
-    estimate_tail_index(alphas=alphas, N=300000, num_it=50, beta=0)
+    #estimate_tail_index(alphas=alphas, N=100000, num_it=50, beta=0)
+    plot_multiple_a(N=100000, beta=0)
