@@ -8,10 +8,10 @@ inverse CDF of exponential distribution with mean m is:
 """
 bin_num = 30
 width = 0.3
-Nlist = [100, 200, 500, 1000, 2000, 3000, 5000, 8000, 10000, 20000, 50000, 100000, 200000] # number of samples
+Nlist = np.arange(0,200,1,dtype = int) # number of samples
 M = 100 # number of trials of each set of samples
 
-def inverse_cdf(N, bin_num=bin_num, width=width):
+def mu_est(N, bin_num=bin_num):
     x_data = np.random.uniform(0,1,N)
     y_data = -np.log(1-x_data)
     mu = 0
@@ -25,18 +25,19 @@ def MC_MSE(Nlist,M):
     for n in Nlist:
         mus = []
         for i in range(M):
-            mu = inverse_cdf(n)
+            mu = mu_est(n)
             mus.append(mu)
         mus = np.array(mus)
         mse = np.mean((mus - 1)**2)
         mses.append(mse)
-    idx = np.linspace(100,20000)
-    plt.plot(Nlist, mses)
+    plt.plot(Nlist, mses, label = 'MSE')
+    plt.plot(Nlist, 1/Nlist,'--',label = '1/N')
     plt.xlabel('Number of samples N')
     plt.ylabel('Mean Squared Error (MSE)')
     plt.title('MSE of Sample Mean vs Number of Samples N')
-    plt.xscale('log')
+    #plt.xscale('log')
     #plt.plot(idx, 1/np.sqrt(idx) ,'--')
+    plt.legend()
     plt.show()
     
 

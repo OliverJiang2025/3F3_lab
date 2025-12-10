@@ -38,9 +38,9 @@ def generate_x(alpha, beta, N):
 
 def plot_data():
 
-    fig, axs = plt.subplots(3,5,figsize = (15,9))
+    fig, axs = plt.subplots(2,5,figsize = (12,8))
     fig.suptitle('Histograms of X for different alpha and beta')
-    for i in range(3):
+    for i in range(2):
         for j in range(5):
             if i == 0:
                 alpha = 0.5
@@ -156,19 +156,10 @@ def plot_multiple_a(N, beta = 0):
 
 
 
-
-
-
-
-
-
-
-
-
-
 ini_alphas = np.arange(0.5, 1.6, 0.1)
 alphas = ini_alphas[ini_alphas != 1.0]
 
 if __name__ == "__main__":
     #estimate_tail_index(alphas=alphas, N=100000, num_it=50, beta=0)
-    plot_multiple_a(N=100000, beta=0)
+    #plot_multiple_a(N=100000, beta=0)
+    plot_data()

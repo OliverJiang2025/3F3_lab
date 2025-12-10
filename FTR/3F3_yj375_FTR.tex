@@ -64,8 +64,7 @@ Date of Experiment: Nov. 2025
 \section{Introduction}
 This lab activity investigates
 statistical methods by generating 
-random numbers with underlying 
-distribution. Uniform and normal
+random numbers. Uniform and normal
 random variables are generated,
 and they are visualized by histogram
 and kernel smoothing density (KSD) function.
@@ -74,7 +73,7 @@ are also discussed.
 Inverse CDF method is used to 
 generate random variables 
 from any arbitrary distributions.
-Finally, stable 
+At last, stable 
 distribution is discussed. 
 
 \section{Methods, Results, and Discussion}
@@ -102,25 +101,19 @@ Gaussian kernel, in the form of\cite{labsheet}:
 
 Where $\mathcal{K}(\cdot) \sim \mathcal{N}(\cdot | 0,1)$, $\sigma$ is the width of the kernel.
 
-For Gaussian random variables, the KSD provides a smooth approximation,
-which closely follows the shape of the theoretical Gaussian distribution curve.
-The histogram, on the other hand, shows more details and fluctuations 
-due to the discrete nature of the bins. 
+We can see that histogram can show more detail 
+of the sample set. However, bin size is a 
+key parameter to determine the underlying 
+distribution. In this illustration, 
+the Gaussian random numbers show a histogram
+that is really close to a bell-shape, while the
+uniform numbers do not show a clear flat shape.
 
-At the same time, the histogram
-may not align with the theoretical curve perfectly due to the 
-choice of bin width and the number of samples.
-
-On the other hand, the uniform random variables show a different behavior
-in histogram and KSD. The shape of the histogram is more likely to be
-affected by the bin width, leading to a step-like appearance.
-Also, it is prone to be affected by random fluctuations.
-
-The KSD, however, smooths out these fluctuations and provides a more
-continuous representation of the uniform distribution. At the same time,
-it can lead to deviation from the ideal uniform shape,
-due to the discontinuities at the edges of the uniform distribution.
-This is because the kernel width is comparable to the range of the uniform distribution.
+On the other hand, KSD smooths out the histogram
+by averaging kernel functions. The Gaussian KSD is 
+very close to the exact curve. However, the 
+uniform KSD is way off the expected shape. 
+This is due to the choice of kernel width.
 
 To discuss more about the effect of kernel width, several KSDs with distinct kernel widths
 are plotted. 
@@ -151,7 +144,7 @@ there are $N$ samples to be placed into these bins.
 Each bin has a probability $p_j$ of receiving a sample,
 where $j = 1, 2, \ldots, J$ and $\sum_{j=1}^{J} p_j = 1$.
 
-And $p_j$ can be calculated by integrating the
+$p_j$ can be calculated by integrating the
 underlying probability density function $p(x)$.
 \begin{equation*}
   p_j = \int^{c_j+\delta /2}_{c_j-\delta /2} p(x) dx
@@ -219,7 +212,9 @@ To start with,
 Where $F(x)$ is the CDF of the Gaussian distribution. This expression helps to 
 evaluate $p_j$ in \textit{python} using \textit{scipy.stats.norm.cdf} function.
 
-Then, $\mathbb{E}(X_j)$ and $\text{Var}(X_j)$ can be calculated accordingly.
+$\mathbb{E}(X_j) = Np_j = N(F(c_j+\delta /2) - F(c_j-\delta /2))$ 
+
+$\text{Var}(X_j) = Np_j(1-p_j) = N (F(c_j+\delta /2) - F(c_j-\delta /2))(1-F(c_j+\delta /2) - F(c_j-\delta /2))$.
 
 \begin{figure}[htbp]
   \centering
@@ -258,7 +253,7 @@ with the linear trend shown.
 
 The Jacobian formula for change of variables in probability density functions 
 states that if $y = f(x)$ is a differentiable and invertible function,
-then the probability density function of the transformed random variable $y$ is given by:
+in which $x$ and $y$ are random variables with PDF $p(x)$ and $p(y)$:
 \begin{equation*}
     p(y) = \frac{p(x)}{|dy/dx|}\bigg|_{x = f^{-1}(y)}
 \end{equation*}
@@ -275,13 +270,6 @@ With $f(\cdot)$ being the standard Gaussian distribution:
     p(y) = \frac{1}{|a|} \cdot \frac{1}{\sqrt{2\pi}} e^{-\frac{(\frac{y-b}{a})^2}{2}} = \frac{1}{\sqrt{2\pi a^2}} e^{-\frac{(y-b)^2}{2a^2}}
 \end{equation*}
 
-
-
-For a general normal distribution ${\cal N}(x|\mu,\sigma^2)$,
-the probability density function is:
-\begin{equation*}
-    p(x) = \frac{1}{\sqrt{2\pi \sigma^2}} e^{-\frac{(x-\mu)^2}{2\sigma^2}}
-\end{equation*}
 We can see that the transformed random variable is ${\cal N}(y|b,a^2)$,
 the linear transformation of a normal distribution is still a normal distribution,
 with a shift of mean from $\mu$ to $\mu + b$ and a scaling of variance from $\sigma^2$ to $a^2 \sigma^2$.
@@ -293,11 +281,6 @@ with a shift of mean from $\mu$ to $\mu + b$ and a scaling of variance from $\si
     \label{fig:fig6}
 \end{figure}
 
-We can see from Figure \ref{fig:fig6} that the histogram of transformed random samples with
-a = 6 and b = 3 fits well with the probability density function with
-variance 6 and mean 3.
-
-
 Now, consider a non-linear transformation, $y = f(x) = x^2$.
 \begin{equation*}
   x = f^{-1}(y) = \begin{cases}
@@ -305,7 +288,7 @@ Now, consider a non-linear transformation, $y = f(x) = x^2$.
     -\sqrt{y}, & x \leq 0
   \end{cases}
 \end{equation*}
-We can see that $f(\cdot)$ is not one-to-one,
+We can see that $f^{-1}(\cdot)$ is one-to-many,
 so we need to consider both branches of the inverse function.
 Also, $|dy/dx| = 2|x| = 2 \sqrt{y}$.
 \begin{align*}
@@ -368,14 +351,70 @@ Combining both parts, we have:
 As shown by Figure \ref{fig:fig8}, the histogram of $y = \sin(x)$
 agrees well with the derived PDF.
 
-\newpage
+Now consider a clipping function:
+\begin{equation*}
+  y = f(x) = \min(\sin{x}, 0.7) = 
+  \begin{cases}
+    \sin(x), & 0 < x < \arcsin(0.7), \pi - \arcsin(0.7) < x < 2\pi \\
+    0.7, & \arcsin(0.7) < x < \pi - \arcsin(0.7)
+  \end{cases}
+\end{equation*}
+The derivative can be evaluated piecewisely:
+\begin{equation*}
+  \left| \frac{dy}{dx} \right| = 
+  \begin{cases}
+    |\cos(x)|, & -1 < y < 0.7\\
+    0, & 0.7 < y < 1
+  \end{cases}
+\end{equation*}
+
+We can see that, since the derivative 
+is at the denominator, $p(y)$ doesn't exist
+in the interval $0.7 < y < 1$.
+
+However, $ x \in (0.7, 1)$ is all mapped to $y = 0.7 $.
+Now $p(y)$ is expected to be a combination of a continuous
+PDF that is derived before for $ y \in [-1, 0.7]$, and 
+a finite spike at $y = 0.7$.
+
+The magnitude of the spike is expected to be 
+$\int ^{1}_{0.7} \frac{1}{\pi \sqrt{1-y^2}} dy \approx 0.184$.
+
+\begin{figure}[htbp] 
+  \centering  
+  \includegraphics[width=0.5\textwidth]{Figures/Figure_16.png}
+  \caption{Histogram of $y = \min(\sin(x),0.7)$ and corresponding PDF}
+  \label{fig:fig16}
+\end{figure}
+
+
 \section{Inverse CDF Method}
 To generate random variables from an arbitrary distribution $p(y)$,
 the inverse CDF method is used.
 
-Given with a uniform random number generator $p(x) = \mathcal{U}(x|0,1)$.
-If $y = f(x)$ is chosen to be the inverse of the CDF of $p(y)$, $F(y)$,
-the generated random numbers $y^{(i)} = f(x^{(i)})$ will follow the distribution $p(y)$.
+Take a uniform distribution $p(x) = \mathcal{U}(x|0,1)$,
+and transform it by $y = f(x)$. By the Jacobian formula, 
+\begin{equation*}
+  p(y) =
+\begin{cases}
+    \left. \dfrac{1}{\left| {dy}/{dx} \right|} \right|_{x=f^{-1}(y)}, & f^{-1}(y) \in (0,1) \\
+    0, & \text{otherwise}
+\end{cases}
+\end{equation*}
+
+$1 / \left|dy/dx\right| = \left| df^{-1}/dx\right|$.
+Thus, the CDF of y, $F(y) = \int p(y) dy = f^{-1}(y)$.
+Equivalently, $f(y) = F^{-1}(y)$. 
+
+This method is a general way to generate random 
+numbers that has a CDF $F(\cdot)$. A set 
+of uniform random numbers is transferred by 
+$F^{-1}(\cdot)$ to give the required random number 
+set. 
+
+
+
+
 
 This method is verified by generating exponential random variables.
 
@@ -385,7 +424,7 @@ The PDF of an exponential distribution Y with mean 1 is:
 \end{equation*}
 The corresponding cdf is found by integration:
 \begin{equation*}
-    F(y) = \int_{0}^{y} f_Y(t)dt = \int_0^y e^{-t}dt = 1 - e^{-y}
+    F(y) = \int_{0}^{y} p(t)dt = \int_0^y e^{-t}dt = 1 - e^{-y}
 \end{equation*}
 The inverse of this function is: 
     $F^{-1}(x) = -\ln{(1-x)} $.
@@ -413,8 +452,7 @@ of the exponential distribution.
   \sigma^2 = \text{Var}(Y) \approx \frac{1}{N} \sum_{i=1}^{N} (y^{(i)})^2 - (\hat{\mu})^2 = \hat{\sigma}^2
 \end{equation*}
 
-
-The expectation of the esimator of mean $\mathbb{E}[\hat{\mu}] = \mathbb{E} [\frac{1}{N} \sum_{i=1}^{N} y^{(i)}] = \frac{1}{N} \sum_{i=1}^{N} \mathbb{E}[y^{(i)}]$
+$\mathbb{E}[\hat{\mu}] = \mathbb{E} [\frac{1}{N} \sum_{i=1}^{N} y^{(i)}] = \frac{1}{N} \sum_{i=1}^{N} \mathbb{E}[y^{(i)}]$
 by linearality of expectation. 
 $\mathbb{E}[y^{(i)}] = \mu$ by definition, so $\mathbb{E}[\hat{\mu}] = \mu$.
 Which implies that the Monte Carlo estimator of mean is unbiased.
@@ -466,7 +504,7 @@ to evaluate the MSE by Monte Carlo simulation.
 
 
 
-\newpage
+
 
 \section{Stable Distribution}
 
@@ -474,7 +512,7 @@ to evaluate the MSE by Monte Carlo simulation.
 
 \begin{figure}[htbp] 
     \centering  
-    \includegraphics[width=0.7\textwidth]{Figures/Figure_12.png}
+    \includegraphics[width=0.5\textwidth]{Figures/Figure_12.png}
     \caption{Histogram of $\alpha$-stable random variables with different $\alpha$ and $\beta$}
     \label{fig:fig12}
 \end{figure}
@@ -484,12 +522,6 @@ data with extreme values. A small value of $\alpha$ gives a distribution
 that has more extreme values, while a large value of $\alpha$ gives a distribution
 that is more concentrated around the mean. When $\alpha = 2$, we can see that
 the distribution has become a standard Gaussian distribution.
-\newline
-The value of $\beta$ determines the skewness of the distribution.
-A positive $\beta$ skews the distribution to the right, and a 
-negative $\beta$ skews the distribution to the left.
-
-
 \begin{figure}[htbp] 
   \centering  
   \includegraphics[width=0.5\textwidth]{Figures/Figure_13.png}
@@ -497,9 +529,18 @@ negative $\beta$ skews the distribution to the left.
   \label{fig:fig13}
 \end{figure}
 
+The value of $\beta$ determines the skewness of the distribution.
+A positive $\beta$ skews the distribution to the right, and a 
+negative $\beta$ skews the distribution to the left.
+
 For the case that $\beta = 0$, the tail probability of $\alpha$-stable
 random variables is plotted in Figure \ref{fig:fig13}. 
-
+\begin{figure}[htbp] 
+  \centering  
+  \includegraphics[width=0.4\textwidth]{Figures/Figure_14.png}
+  \caption{$\gamma$ against $\alpha$}
+  \label{fig:fig14}
+\end{figure}
 To compare with the standard Gaussian distribution,
 $\mathcal{N}(0,1)$, 
 that has a tail probability of:
@@ -526,12 +567,7 @@ on both sides: $\ln(p(x)) = \ln(c) + \gamma \ln(x)$.
 Then, linear regression is performed to estimate the value of $\gamma$.
 
 
-\begin{figure}[htbp] 
-  \centering  
-  \includegraphics[width=0.5\textwidth]{Figures/Figure_14.png}
-  \caption{$\gamma$ against $\alpha$}
-  \label{fig:fig14}
-\end{figure}
+
 
 As shown by Figure \ref{fig:fig14}, there is a linear relationship
 between $\gamma$ and $\alpha$. By a linear fit, we have:
@@ -555,6 +591,25 @@ from the stable distributions with $\alpha$ close to 2.
 \end{figure}
 
 \section{Conclusion}
+
+This report links theoretical statistical concepts 
+,including random number generation and variable transformation,
+to empirical validation via simulation and visualization. 
+We confirmed that distribution visualization 
+depends on parameter tuning 
+and sample size, validated the Jacobian formula 
+for variable transformations 
+and the inverse CDF method for arbitrary distribution 
+generation, and clarified how 
+stable distribution parameters control 
+tail heaviness and skewness. 
+These techniques form a foundational toolkit 
+for engineering applications involving randomness, 
+from signal processing to stochastic modeling.
+
+
+
+
 
 \begin{thebibliography}{99}
   \bibitem{labsheet} Cambridge University Engineering Department. 
